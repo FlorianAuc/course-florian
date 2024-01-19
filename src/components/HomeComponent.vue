@@ -3,7 +3,7 @@
     <header class="hero is-primary">
       <div class="hero-body">
         <h1 class="title">
-          <img style="height: 36px" src="/src/assets/images/logo.png" /> Je cours...
+          <img style="height: 36px" src="/src/assets/images/logo.png" alt="logo"/> Je cours...
         </h1>
         <p class="settings"><i class="fas fa-cog"></i></p>
       </div>
@@ -111,7 +111,7 @@ section.container {
   padding: 1rem;
 }
 .install {
-  display: none;
+  
   float: right;
 }
 .update {
