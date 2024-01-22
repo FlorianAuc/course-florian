@@ -10,14 +10,22 @@
     </header>
     <section class="main-content container content">
       <div class="objectif"></div>
-      <p><button class="button is-success" @click="startTraining">Démarrer</button></p>
-      <div class="encours" :style="{ display: entrainementStore.status ? 'block' : 'none' }">
-        <h2 class="jour title">dsq</h2>
-        <p class="progress-text"></p>
-        <p class="vitesse"></p>
-        <p class="action"></p>
+      <p><button class="button is-success" @click="startTraining" :disabled="entrainementStore.status">Démarrer</button></p>
+      <div class="encours" v-if="entrainementStore.status">
+        <h2 class="jour title">{{ entrainementStore.getCurrentStep().label }}</h2>
+        <p class="progress-text">
+          {{ entrainementStore.getEtapeIndex() + 1 }}/{{ totalEtapes() }}
+        </p>
+        <p class="time">{{ entrainementStore.time }} secondes</p>
+        <p class="action">{{ entrainementStore.action }}</p>
         <audio src=""></audio>
-        <progress class="progress is-large is-success" max="13" value2="0">0</progress>
+        <progress
+          class="progress is-large is-success"
+          :max="totalEtapes()"
+          :value="entrainementStore.getEtapeIndex() + 1"
+        >
+          {{ entrainementStore.getEtapeIndex() + 1 }}
+        </progress>
       </div>
 
       <div class="legend">
@@ -79,8 +87,8 @@
           >Inspired</a
         >
       </p>
-      <button class="button reset is-danger">Reset</button>
-      <button class="button reset-day is-danger">Reset day</button>
+      <button class="button reset is-danger" @click="resetTraining">Reset</button>
+      <button class="button reset-day is-danger" @click="resetDay">Reset day</button>
       <!-- <button class="button update is-warning">Update</button> -->
       <button class="button install is-primary"><i class="fas fa-download"></i></button>
     </footer>
@@ -88,16 +96,50 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useEntrainementStore } from '@/stores/entrainement'
 
 const entrainementStore = useEntrainementStore()
 
-const startTraining = () => {
-  entrainementStore.setStatus(true)
+entrainementStore.listEntrainement(); 
+
+onMounted(() => {
+  entrainementStore.listEntrainement();
+});
+
+
+const totalEtapes = () => {
+  const semaineIndex = entrainementStore.semaine - 1;
+  const joursIndex = entrainementStore.jours - 1;
+  return entrainementStore.entrainement[0].semaines[semaineIndex].jours[joursIndex].etapes.length;
+};
+
+
+
+const startTraining = async () => {
+  await entrainementStore.startTraining();
+
+  // Vérifier si les données d'entraînement sont correctement chargées
+  if (entrainementStore.entrainement.length > 0) {
+    // Vérifier si toutes les étapes du jour sont terminées, puis passer au jour suivant
+    if (!entrainementStore.nextStep()) {
+      entrainementStore.nextDay();
+    }
+  } else {
+    console.error("Erreur : Les données d'entraînement ne sont pas correctement chargées.");
+  }
 }
 
-// Mettre à jour la date du footer automatiquement
+const resetTraining = () => {
+  entrainementStore.resetTraining();
+}
+
+const resetDay = () => {
+  entrainementStore.resetDay();
+}
+
+
+// ----- Mettre à jour la date du footer automatiquement ----- //
 const year = ref(new Date().getFullYear())
 
 // Fonction pour mettre à jour l'année
@@ -113,7 +155,6 @@ updateYear()
 </script>
 
 <style lang="scss">
-
 section.container {
   padding: 1rem;
 }

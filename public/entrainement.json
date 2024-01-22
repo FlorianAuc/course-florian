@@ -18,79 +18,79 @@
                 {
                   "id": 1,
                   "label": "Echauffements",
-                  "time": 600,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 2,
                   "label": "Trot",
-                  "time": 30,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 3,
                   "label": "Marche",
-                  "time": 60,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 4,
                   "label": "Trot",
-                  "time": 60,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 5,
                   "label": "Marche",
-                  "time": 60,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 6,
                   "label": "Trot",
-                  "time": 90,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 7,
                   "label": "Marche",
-                  "time": 90,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 8,
                   "label": "Trot",
-                  "time": 120,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 9,
                   "label": "Marche",
-                  "time": 120,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 10,
                   "label": "Trot",
-                  "time": 90,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 11,
                   "label": "Marche",
-                  "time": 120,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 12,
                   "label": "Trot",
-                  "time": 60,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 13,
                   "label": "Etirements",
-                  "time": 300,
+                  "time": 1,
                   "status": false
                 }
               ]
@@ -102,67 +102,67 @@
                 {
                   "id": 1,
                   "label": "Echauffements",
-                  "time": 600,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 2,
                   "label": "Trot",
-                  "time": 60,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 3,
                   "label": "Marche",
-                  "time": 60,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 4,
                   "label": "Trot",
-                  "time": 90,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 5,
                   "label": "Marche",
-                  "time": 90,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 6,
                   "label": "Trot",
-                  "time": 120,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 7,
                   "label": "Marche",
-                  "time": 150,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 8,
                   "label": "Trot",
-                  "time": 120,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 9,
                   "label": "Marche",
-                  "time": 60,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 10,
                   "label": "Trot",
-                  "time": 60,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 11,
                   "label": "Etirements",
-                  "time": 300,
+                  "time": 1,
                   "status": false
                 }
               ]
