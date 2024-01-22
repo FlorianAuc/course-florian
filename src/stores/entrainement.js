@@ -8,7 +8,6 @@ export const useEntrainementStore = defineStore({
     entrainement: [],
     semaine: 1,
     jours: 1,
-    action: '',
     time: null,
     etapeIndex: 0
   }),
@@ -31,7 +30,6 @@ export const useEntrainementStore = defineStore({
       this.entrainement = data
       this.setSemaine(1)
       this.setJours(1)
-      this.setAction('')
       this.setTime(null)
       this.setEtapeIndex(0)
     },
@@ -47,7 +45,6 @@ export const useEntrainementStore = defineStore({
       this.setTime(null)
 
       const firstStep = this.getCurrentStep()
-      this.setAction(firstStep.label)
       this.setTime(firstStep.time)
 
       this.startTimer(firstStep.time)
@@ -61,7 +58,6 @@ export const useEntrainementStore = defineStore({
 
         if (this.nextStep()) {
           const currentStep = this.getCurrentStep()
-          this.setAction(currentStep.label)
           this.setTime(currentStep.time)
 
           this.startTimer(currentStep.time)
@@ -168,10 +164,6 @@ export const useEntrainementStore = defineStore({
 
     setJours(jours) {
       this.jours = jours
-    },
-
-    setAction(action) {
-      this.action = action
     },
 
     setTime(time) {

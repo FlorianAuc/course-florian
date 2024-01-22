@@ -17,7 +17,7 @@
           {{ entrainementStore.getEtapeIndex() + 1 }}/{{ totalEtapes() }}
         </p>
         <p class="time">{{ entrainementStore.time }} secondes</p>
-        <p class="action">{{ entrainementStore.action }}</p>
+        <p class="action">{{ entrainementStore.getCurrentStep().label }}</p>
         <audio src=""></audio>
         <progress
           class="progress is-large is-success"
