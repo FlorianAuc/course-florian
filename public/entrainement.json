@@ -1,0 +1,206 @@
+{
+  "activities": [
+    {
+      "id": 1,
+      "label": "saison",
+      "content": "entrainement 0-5 km",
+      "status": false,
+      "semaines": [
+        {
+          "id": 1,
+          "label": "semaine",
+          "status": false,
+          "jours": [
+            {
+              "id": 1,
+              "label": "jour",
+              "etapes": [
+                {
+                  "id": 1,
+                  "label": "Echauffements",
+                  "time": 600,
+                  "status": false
+                },
+                {
+                  "id": 2,
+                  "label": "Trot",
+                  "time": 30,
+                  "status": false
+                },
+                {
+                  "id": 3,
+                  "label": "Marche",
+                  "time": 60,
+                  "status": false
+                },
+                {
+                  "id": 4,
+                  "label": "Trot",
+                  "time": 60,
+                  "status": false
+                },
+                {
+                  "id": 5,
+                  "label": "Marche",
+                  "time": 60,
+                  "status": false
+                },
+                {
+                  "id": 6,
+                  "label": "Trot",
+                  "time": 90,
+                  "status": false
+                },
+                {
+                  "id": 7,
+                  "label": "Marche",
+                  "time": 90,
+                  "status": false
+                },
+                {
+                  "id": 8,
+                  "label": "Trot",
+                  "time": 120,
+                  "status": false
+                },
+                {
+                  "id": 9,
+                  "label": "Marche",
+                  "time": 120,
+                  "status": false
+                },
+                {
+                  "id": 10,
+                  "label": "Trot",
+                  "time": 90,
+                  "status": false
+                },
+                {
+                  "id": 11,
+                  "label": "Marche",
+                  "time": 120,
+                  "status": false
+                },
+                {
+                  "id": 12,
+                  "label": "Trot",
+                  "time": 60,
+                  "status": false
+                },
+                {
+                  "id": 13,
+                  "label": "Etirements",
+                  "time": 300,
+                  "status": false
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "label": "jour",
+              "etapes": [
+                {
+                  "id": 1,
+                  "label": "Echauffements",
+                  "time": 600,
+                  "status": false
+                },
+                {
+                  "id": 2,
+                  "label": "Trot",
+                  "time": 60,
+                  "status": false
+                },
+                {
+                  "id": 3,
+                  "label": "Marche",
+                  "time": 60,
+                  "status": false
+                },
+                {
+                  "id": 4,
+                  "label": "Trot",
+                  "time": 90,
+                  "status": false
+                },
+                {
+                  "id": 5,
+                  "label": "Marche",
+                  "time": 90,
+                  "status": false
+                },
+                {
+                  "id": 6,
+                  "label": "Trot",
+                  "time": 120,
+                  "status": false
+                },
+                {
+                  "id": 7,
+                  "label": "Marche",
+                  "time": 150,
+                  "status": false
+                },
+                {
+                  "id": 8,
+                  "label": "Trot",
+                  "time": 120,
+                  "status": false
+                },
+                {
+                  "id": 9,
+                  "label": "Marche",
+                  "time": 60,
+                  "status": false
+                },
+                {
+                  "id": 10,
+                  "label": "Trot",
+                  "time": 60,
+                  "status": false
+                },
+                {
+                  "id": 11,
+                  "label": "Etirements",
+                  "time": 300,
+                  "status": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "label": "semaine",
+          "status": false,
+          "jours": [
+            {
+              "id": 1,
+              "label": "jour",
+              "etapes": [
+                {
+                  "id": 1,
+                  "label": "Echauffements",
+                  "time": 600,
+                  "status": false
+                },
+                {
+                  "id": 2,
+                  "label": "Trot",
+                  "time": 60,
+                  "status": false
+                },
+                {
+                  "id": 3,
+                  "label": "Marche",
+                  "time": 60,
+                  "status": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

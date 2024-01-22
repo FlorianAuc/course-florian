@@ -3,22 +3,23 @@
     <header class="hero is-primary">
       <div class="hero-body">
         <h1 class="title">
-          <img style="height: 36px" src="/src/assets/images/logo.png" alt="logo"/> Je cours...
+          <img style="height: 36px" src="/src/assets/images/logo.png" alt="logo" /> Je cours...
         </h1>
         <p class="settings"><i class="fas fa-cog"></i></p>
       </div>
     </header>
     <section class="main-content container content">
       <div class="objectif"></div>
-      <p><button class="button start is-danger">Démarrer</button></p>
-      <div class="encours">
-        <h2 class="jour title"></h2>
+      <p><button class="button is-success" @click="startTraining">Démarrer</button></p>
+      <div class="encours" :style="{ display: entrainementStore.status ? 'block' : 'none' }">
+        <h2 class="jour title">dsq</h2>
         <p class="progress-text"></p>
         <p class="vitesse"></p>
         <p class="action"></p>
         <audio src=""></audio>
         <progress class="progress is-large is-success" max="13" value2="0">0</progress>
       </div>
+
       <div class="legend">
         <h3>Légende</h3>
         <table class="table is-striped">
@@ -80,38 +81,43 @@
       </p>
       <button class="button reset is-danger">Reset</button>
       <button class="button reset-day is-danger">Reset day</button>
-      <button class="button update is-warning">Update</button>
+      <!-- <button class="button update is-warning">Update</button> -->
       <button class="button install is-primary"><i class="fas fa-download"></i></button>
     </footer>
   </div>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, onMounted } from 'vue'
+import { useEntrainementStore } from '@/stores/entrainement'
 
-const year = ref(new Date().getFullYear());
+const entrainementStore = useEntrainementStore()
+
+const startTraining = () => {
+  entrainementStore.setStatus(true)
+}
+
+// Mettre à jour la date du footer automatiquement
+const year = ref(new Date().getFullYear())
 
 // Fonction pour mettre à jour l'année
 const updateYear = () => {
-  year.value = new Date().getFullYear();
-};
+  year.value = new Date().getFullYear()
+}
 
 // Surveiller les changements de l'année
-watch(() => new Date().getFullYear(), updateYear);
+onMounted(updateYear)
 
 // Appeler la fonction pour initialiser l'année
-updateYear();
+updateYear()
 </script>
 
 <style lang="scss">
-.encours {
-  display: none;
-}
+
 section.container {
   padding: 1rem;
 }
 .install {
-  
   float: right;
 }
 .update {
