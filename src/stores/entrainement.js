@@ -39,6 +39,10 @@ export const useEntrainementStore = defineStore({
       const firstStep = this.getCurrentStep()
       this.time = firstStep.time
 
+      // Ajoutez cette condition pour ne pas augmenter etapeIndex si déjà à 1
+      if (this.etapeIndex !== 0) {
+        this.etapeIndex = 0
+      }
       this.startTimer(firstStep.time)
     },
 

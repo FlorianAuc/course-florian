@@ -100,7 +100,6 @@
 import { ref, onMounted } from 'vue';
 import { useEntrainementStore } from '@/stores/entrainement';
 
-const showNotification = ref(false);
 const entrainementStore = useEntrainementStore();
 
 const totalEtapes = () => {
@@ -111,6 +110,9 @@ const totalEtapes = () => {
 
 const startTraining = () => {
   entrainementStore.startTraining();
+
+  // Réinitialiser etapeIndex à 0 directement
+  entrainementStore.etapeIndex = -1;
 
   if (entrainementStore.entrainement.length > 0) {
     if (!entrainementStore.nextStep()) {

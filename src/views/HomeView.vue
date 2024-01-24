@@ -13,8 +13,8 @@ const entrainementStore = useEntrainementStore()
 
 const entrainement = ref([])
 
-onMounted(async () => {
-  await entrainementStore.listEntrainement()
+onMounted( () => {
+  entrainementStore.listEntrainement()
   entrainement.value = entrainementStore.entrainement
 })
 </script>
