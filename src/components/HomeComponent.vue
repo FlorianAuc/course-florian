@@ -166,6 +166,9 @@ section.container {
   float: left;
   margin-right: 1em;
 }
+progress{
+  width: 300px;
+}
 .reset {
   float: left;
   margin-right: 1em;
