@@ -18,10 +18,10 @@
         <p class="progress-text">
           {{ entrainementStore.etapeIndex + 1 }}/{{ totalEtapes() }}
         </p>
-        <p class="time">{{ entrainementStore.time }} secondes</p>
+        <p class="time">{{ formatTime(entrainementStore.time) }}</p>
         <p class="action">{{ entrainementStore.getCurrentStep().label }}</p>
         <audio autoplay :src="`/${entrainementStore.getCurrentStep().label.toLowerCase()}.mp3`" ref="audioPlayer"></audio>
-
+        <p class="total">Temps total: {{ formatTime(totalTime) }}</p>
         <progress
           class="progress is-large is-success"
           :max="totalEtapes()"
@@ -97,7 +97,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useEntrainementStore } from '@/stores/entrainement';
 
 const entrainementStore = useEntrainementStore();
@@ -122,6 +122,27 @@ const startTraining = () => {
     console.error("Erreur : Les données d'entraînement ne sont pas correctement chargées.");
   }
 };
+
+const totalTime = computed(() => {
+  let totalSeconds = 0;
+
+  // Loop through each step in the current training day
+  const etapes = entrainementStore.entrainement[0].semaines[entrainementStore.semaine - 1].jours[entrainementStore.jours - 1].etapes;
+
+  for (const etape of etapes) {
+    totalSeconds += etape.time; // Assuming each etape has a 'time' property representing the duration in seconds
+  }
+
+  return totalSeconds;
+});
+
+const formatTime = (totalSeconds) => {
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+
+  return `${minutes} min ${seconds} sec`;
+};
+
 
 const resetTraining = () => {
   entrainementStore.resetTraining();
