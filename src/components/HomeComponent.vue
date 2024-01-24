@@ -10,11 +10,13 @@
     </header>
     <section class="main-content container content">
       <div class="objectif"></div>
-      <p><button class="button is-success" @click="startTraining" :disabled="entrainementStore.status">Démarrer</button></p>
+      <p>
+        <button class="button is-success" @click="startTraining" :disabled="entrainementStore.status">Démarrer</button>
+      </p>
       <div class="encours" v-if="entrainementStore.status">
-        <h2 class="jour title">{{ entrainementStore.getCurrentStep().label }}</h2>
+        <h2 class="jour title"> Semaine {{ entrainementStore.semaine }} - Jour {{ entrainementStore.jours }}</h2>
         <p class="progress-text">
-          {{ entrainementStore.getEtapeIndex() + 1 }}/{{ totalEtapes() }}
+          {{ entrainementStore.etapeIndex + 1 }}/{{ totalEtapes() }}
         </p>
         <p class="time">{{ entrainementStore.time }} secondes</p>
         <p class="action">{{ entrainementStore.getCurrentStep().label }}</p>
@@ -23,9 +25,9 @@
         <progress
           class="progress is-large is-success"
           :max="totalEtapes()"
-          :value="entrainementStore.getEtapeIndex() + 1"
+          :value="entrainementStore.etapeIndex + 1"
         >
-          {{ entrainementStore.getEtapeIndex() + 1 }}
+          {{ entrainementStore.etapeIndex + 1 }}
         </progress>
       </div>
 
@@ -85,29 +87,21 @@
         <a
           href="https://jogging.jograph.be/les-entrainements-je-cours-pour-ma-forme/"
           target="_blank"
-          >Inspired</a
-        >
+        >Inspired</a>
       </p>
       <button class="button reset is-danger" @click="resetTraining">Reset</button>
       <button class="button reset-day is-danger" @click="resetDay">Reset day</button>
-      <!-- <button class="button update is-warning">Update</button> -->
       <button class="button install is-primary"><i class="fas fa-download"></i></button>
     </footer>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted} from 'vue'
-import { useEntrainementStore } from '@/stores/entrainement'
+import { ref, onMounted } from 'vue';
+import { useEntrainementStore } from '@/stores/entrainement';
 
-const entrainementStore = useEntrainementStore()
-
-entrainementStore.listEntrainement(); 
-
-onMounted(() => {
-  //entrainementStore.listEntrainement();
-});
-
+const showNotification = ref(false);
+const entrainementStore = useEntrainementStore();
 
 const totalEtapes = () => {
   const semaineIndex = entrainementStore.semaine - 1;
@@ -115,46 +109,50 @@ const totalEtapes = () => {
   return entrainementStore.entrainement[0].semaines[semaineIndex].jours[joursIndex].etapes.length;
 };
 
-const startTraining =  () => {
+const startTraining = () => {
   entrainementStore.startTraining();
-  // Vérifier si les données d'entraînement sont correctement chargées
+
   if (entrainementStore.entrainement.length > 0) {
-    // Vérifier si toutes les étapes du jour sont terminées, puis passer au jour suivant
     if (!entrainementStore.nextStep()) {
       entrainementStore.nextDay();
     }
   } else {
     console.error("Erreur : Les données d'entraînement ne sont pas correctement chargées.");
   }
-}
-
-// Watcher pour mettre à jour le chemin du fichier audio lorsque l'étape change
-
+};
 
 const resetTraining = () => {
   entrainementStore.resetTraining();
-}
+};
 
 const resetDay = () => {
   entrainementStore.resetDay();
-}
+};
 
-// ----- Mettre à jour la date du footer automatiquement ----- //
-const year = ref(new Date().getFullYear())
+const year = ref(new Date().getFullYear());
 
-// Fonction pour mettre à jour l'année
 const updateYear = () => {
-  year.value = new Date().getFullYear()
-}
+  year.value = new Date().getFullYear();
+};
 
-// Surveiller les changements de l'année
-onMounted(updateYear)
+onMounted(updateYear);
 
-// Appeler la fonction pour initialiser l'année
-updateYear()
+updateYear();
 </script>
 
 <style lang="scss">
+
+.notification {
+  transition: transform 0.5s ease;
+  font-size: 2rem;
+  text-align: center;
+  background: rgba(0, 194, 0, 0.895);
+  z-index: 9999;
+}
+
+.is-hidden {
+  transform: translateY(-100%);
+}
 section.container {
   padding: 1rem;
 }
