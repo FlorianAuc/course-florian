@@ -18,7 +18,8 @@
         </p>
         <p class="time">{{ entrainementStore.time }} secondes</p>
         <p class="action">{{ entrainementStore.getCurrentStep().label }}</p>
-        <audio src=""></audio>
+        <audio autoplay :src="`/${entrainementStore.getCurrentStep().label.toLowerCase()}.mp3`" ref="audioPlayer"></audio>
+
         <progress
           class="progress is-large is-success"
           :max="totalEtapes()"
@@ -96,7 +97,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted} from 'vue'
 import { useEntrainementStore } from '@/stores/entrainement'
 
 const entrainementStore = useEntrainementStore()
@@ -114,12 +115,8 @@ const totalEtapes = () => {
   return entrainementStore.entrainement[0].semaines[semaineIndex].jours[joursIndex].etapes.length;
 };
 
-
-
 const startTraining =  () => {
   entrainementStore.startTraining();
-  //entrainementStore.setEtapeIndex(0);
-
   // Vérifier si les données d'entraînement sont correctement chargées
   if (entrainementStore.entrainement.length > 0) {
     // Vérifier si toutes les étapes du jour sont terminées, puis passer au jour suivant
@@ -131,6 +128,9 @@ const startTraining =  () => {
   }
 }
 
+// Watcher pour mettre à jour le chemin du fichier audio lorsque l'étape change
+
+
 const resetTraining = () => {
   entrainementStore.resetTraining();
 }
@@ -138,7 +138,6 @@ const resetTraining = () => {
 const resetDay = () => {
   entrainementStore.resetDay();
 }
-
 
 // ----- Mettre à jour la date du footer automatiquement ----- //
 const year = ref(new Date().getFullYear())
