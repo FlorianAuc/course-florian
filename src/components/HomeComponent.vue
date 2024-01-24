@@ -212,4 +212,10 @@ progress{
     float: right;
   }
 }
+
+@media screen and (max-height: 800px){
+.footer{
+  margin-top: 5rem;
+}
+}
 </style>
