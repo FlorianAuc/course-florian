@@ -181,19 +181,19 @@
                 {
                   "id": 1,
                   "label": "Echauffements",
-                  "time": 600,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 2,
                   "label": "Trot",
-                  "time": 60,
+                  "time": 1,
                   "status": false
                 },
                 {
                   "id": 3,
                   "label": "Marche",
-                  "time": 60,
+                  "time": 1,
                   "status": false
                 }
               ]

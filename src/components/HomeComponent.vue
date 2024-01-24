@@ -3,7 +3,7 @@
     <header class="hero is-primary">
       <div class="hero-body">
         <h1 class="title">
-          <img style="height: 36px" src="/src/assets/images/logo.png" alt="logo" /> Je cours...
+          <img style="height: 36px" src="/images/logo.png" alt="logo" /> Je cours...
         </h1>
         <p class="settings"><i class="fas fa-cog"></i></p>
       </div>
@@ -20,7 +20,7 @@
         </p>
         <p class="time">{{ entrainementStore.time }} secondes</p>
         <p class="action">{{ entrainementStore.getCurrentStep().label }}</p>
-        <audio autoplay :src="`/${entrainementStore.getCurrentStep().label.toLowerCase()}.mp3`" ref="audioPlayer"></audio>
+        <audio  :src="`/${entrainementStore.getCurrentStep().label.toLowerCase()}.mp3`" ref="audioPlayer"></audio>
 
         <progress
           class="progress is-large is-success"
@@ -35,8 +35,8 @@
         <h3>Légende</h3>
         <table class="table is-striped">
           <tr>
-            <td>Echauffement</td>
-            <td>
+            <td class="is-size-6">Echauffement</td>
+            <td class="is-size-6">
               Ensemble de
               <a
                 href="https://www.youtube.com/watch?v=hijkKi4g_q8&ab_channel=MatthieuVerneret"
@@ -47,28 +47,28 @@
             </td>
           </tr>
           <tr>
-            <td>Trot</td>
-            <td>Course normale</td>
+            <td class="is-size-6">Trot</td>
+            <td class="is-size-6">Course normale</td>
           </tr>
           <tr>
-            <td>Trot lent</td>
-            <td>Limite marche rapide</td>
+            <td class="is-size-6">Trot lent</td>
+            <td class="is-size-6">Limite marche rapide</td>
           </tr>
           <tr>
-            <td>Déboulé</td>
-            <td>Accélération constante sur 100 à 200 m.</td>
+            <td class="is-size-6">Déboulé</td>
+            <td class="is-size-6">Accélération constante sur 100 à 200 m.</td>
           </tr>
           <tr>
-            <td>Course</td>
-            <td>Trot à vitesses variables</td>
+            <td class="is-size-6">Course</td>
+            <td class="is-size-6">Trot à vitesses variables</td>
           </tr>
           <tr>
-            <td>Sprint</td>
-            <td>Vitese max</td>
+            <td class="is-size-6">Sprint</td>
+            <td class="is-size-6">Vitese max</td>
           </tr>
           <tr>
-            <td>Etirements</td>
-            <td>
+            <td class="is-size-6">Etirements</td>
+            <td class="is-size-6">
               Ensemble de
               <a
                 href="https://www.youtube.com/watch?v=rlDv7M_MxLw&ab_channel=LucileWoodward"
@@ -180,6 +180,10 @@ section.container {
 .footer {
   height: 80px !important;
 }
+.legend{
+  font-size: 2rem;
+}
+
 .table {
   td {
     font-size: 11px;

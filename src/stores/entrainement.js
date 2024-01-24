@@ -9,8 +9,7 @@ export const useEntrainementStore = defineStore({
     semaine: 1,
     jours: 1,
     time: null,
-    etapeIndex: 0,
-    showNotification: false
+    etapeIndex: 0
   }),
 
   getters: {},
@@ -83,22 +82,6 @@ export const useEntrainementStore = defineStore({
       }
     },
 
-    completeStep() {
-      const semaineIndex = this.semaine - 1
-      const joursIndex = this.jours - 1
-      const etapeIndex = this.etapeIndex
-
-      this.entrainement[0].semaines[semaineIndex].jours[joursIndex].etapes[etapeIndex].status = true
-
-      if (
-        etapeIndex ===
-        this.entrainement[0].semaines[semaineIndex].jours[joursIndex].etapes.length - 1
-      ) {
-        this.entrainement[0].semaines[semaineIndex].jours[joursIndex].status = true
-        this.saveWeekAndDay()
-      }
-    },
-
     nextStep() {
       const etapeIndex = this.etapeIndex
       const joursIndex = this.jours - 1
@@ -145,6 +128,50 @@ export const useEntrainementStore = defineStore({
       }
     },
 
+    checkTrainingCompletion() {
+      const { entrainement, semaine, jours } = this
+
+      const currentWeek = entrainement[0].semaines[semaine - 1]
+      if (!currentWeek || !currentWeek.jours[jours - 1]) {
+        // La semaine ou le jour n'existe pas, vous pouvez gérer cela selon vos besoins
+        return
+      }
+
+      const allStepsComplete = currentWeek.jours[jours - 1].etapes.every((step) => step.status)
+
+      if (allStepsComplete) {
+        currentWeek.status = true // Marquer la semaine comme terminée
+
+        const allWeeksComplete = entrainement[0].semaines.every((week) => week.status)
+
+        // Toutes les semaines sont terminées et la saison n'est pas encore marquée comme terminée
+        if (allWeeksComplete && !entrainement[0].status) {
+          // Marquer la saison comme terminée
+          entrainement[0].status = true
+          alert('Félicitations ! Vous avez terminé tous les entraînements de la saison.')
+        }
+      }
+    },
+
+    completeStep() {
+      const semaineIndex = this.semaine - 1
+      const joursIndex = this.jours - 1
+      const etapeIndex = this.etapeIndex
+
+      this.entrainement[0].semaines[semaineIndex].jours[joursIndex].etapes[etapeIndex].status = true
+
+      if (
+        etapeIndex ===
+        this.entrainement[0].semaines[semaineIndex].jours[joursIndex].etapes.length - 1
+      ) {
+        this.entrainement[0].semaines[semaineIndex].jours[joursIndex].status = true
+        this.saveWeekAndDay()
+
+        // Appel de la méthode pour vérifier si toutes les semaines sont terminées
+        this.checkTrainingCompletion()
+      }
+    },
+
     getCurrentStep() {
       const semaineIndex = this.semaine - 1
       const joursIndex = this.jours - 1
@@ -170,6 +197,11 @@ export const useEntrainementStore = defineStore({
       this.status = false
       this.time = null
       this.etapeIndex = 0
+
+      // Mettez à false le statut du jour actuel
+      const semaineIndex = this.semaine - 1
+      const joursIndex = this.jours - 1
+      this.entrainement[0].semaines[semaineIndex].jours[joursIndex].status = false
 
       setTimeout(() => {
         window.location.reload()
