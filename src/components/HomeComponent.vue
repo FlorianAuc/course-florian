@@ -104,7 +104,7 @@ const entrainementStore = useEntrainementStore()
 entrainementStore.listEntrainement(); 
 
 onMounted(() => {
-  entrainementStore.listEntrainement();
+  //entrainementStore.listEntrainement();
 });
 
 
@@ -116,8 +116,9 @@ const totalEtapes = () => {
 
 
 
-const startTraining = async () => {
-  await entrainementStore.startTraining();
+const startTraining =  () => {
+  entrainementStore.startTraining();
+  //entrainementStore.setEtapeIndex(0);
 
   // Vérifier si les données d'entraînement sont correctement chargées
   if (entrainementStore.entrainement.length > 0) {

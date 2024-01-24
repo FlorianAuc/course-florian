@@ -48,8 +48,6 @@ export const useEntrainementStore = defineStore({
       this.setTime(firstStep.time)
 
       this.startTimer(firstStep.time)
-      //reset l'index une fois l'entrainement fini
-      this.setEtapeIndex(0)
     },
     // ----- gestion du chronomètre pendant l'entraînement ----- //
     startTimer(time) {
@@ -57,11 +55,13 @@ export const useEntrainementStore = defineStore({
         this.completeStep()
 
         if (this.nextStep()) {
+          console.log('After nextStep:', this.getEtapeIndex())
           const currentStep = this.getCurrentStep()
           this.setTime(currentStep.time)
 
           this.startTimer(currentStep.time)
         } else {
+          console.log('After nextStep (end):', this.getEtapeIndex())
           this.setStatus(false)
         }
       }, time * 1000)
@@ -81,6 +81,7 @@ export const useEntrainementStore = defineStore({
       const semaineIndex = this.semaine - 1
       const joursIndex = this.jours - 1
       const etapeIndex = this.getEtapeIndex()
+      console.log(etapeIndex)
 
       // Marquer l'étape actuelle comme terminée
       this.entrainement[0].semaines[semaineIndex].jours[joursIndex].etapes[etapeIndex].status = true
@@ -118,6 +119,8 @@ export const useEntrainementStore = defineStore({
 
     // ----- Passer au prochain jour -----//
     nextDay() {
+      //reset l'index une fois l'entrainement fini
+      this.setEtapeIndex(0)
       console.log('Inside nextDay, status:', this.status)
       // Vérifier si l'entraînement est en cours avant de passer au jour suivant
       if (this.status) {
@@ -142,12 +145,20 @@ export const useEntrainementStore = defineStore({
     // ----- Passer a la prochaine semaine -----//
     nextWeek() {
       const semaineIndex = this.semaine - 1
+
       if (semaineIndex < this.entrainement[0].semaines.length - 1) {
         this.setSemaine(this.semaine + 1)
         return true
       } else {
         return false
       }
+    },
+    getCurrentStep() {
+      const semaineIndex = this.semaine - 1
+      const joursIndex = this.jours - 1
+      const etapeIndex = this.getEtapeIndex()
+
+      return this.entrainement[0].semaines[semaineIndex].jours[joursIndex].etapes[etapeIndex]
     },
 
     setStatus(status) {
@@ -172,13 +183,6 @@ export const useEntrainementStore = defineStore({
 
     setEtapeIndex(index) {
       this.etapeIndex = index
-    },
-
-    getCurrentStep() {
-      const semaineIndex = this.semaine - 1
-      const joursIndex = this.jours - 1
-      const etapeIndex = this.getEtapeIndex()
-      return this.entrainement[0].semaines[semaineIndex].jours[joursIndex].etapes[etapeIndex]
     }
   }
 })
