@@ -21,6 +21,7 @@ export const useEntrainementStore = defineStore({
         const data = await res.json()
         // console.log('JSON :', data.activities[0])
         this.setEntrainement(data.activities)
+        this.initFromLocalStorage()
       } catch (error) {
         console.error(error)
       }
@@ -71,18 +72,31 @@ export const useEntrainementStore = defineStore({
     saveWeekAndDay() {
       const semaineIndex = this.semaine
       const joursIndex = this.jours
+      const etapeIndex = this.getEtapeIndex()
 
-      console.log('Saving values:', semaineIndex, joursIndex)
+      console.log('Saving values:', semaineIndex, joursIndex, etapeIndex)
 
       localStorage.setItem('week', semaineIndex)
       localStorage.setItem('day', joursIndex)
+      localStorage.setItem('etapeIndex', etapeIndex)
     },
+
+    initFromLocalStorage() {
+      const savedWeek = localStorage.getItem('week')
+      const savedDay = localStorage.getItem('day')
+      const savedEtapeIndex = localStorage.getItem('etapeIndex')
+
+      if (savedWeek && savedDay && savedEtapeIndex) {
+        this.setSemaine(parseInt(savedWeek))
+        this.setJours(parseInt(savedDay))
+        this.setEtapeIndex(parseInt(savedEtapeIndex)) // Soustrayez 1 pour obtenir l'index correct
+      }
+    },
+
     completeStep() {
       const semaineIndex = this.semaine - 1
       const joursIndex = this.jours - 1
       const etapeIndex = this.getEtapeIndex()
-      console.log(etapeIndex)
-
       // Marquer l'étape actuelle comme terminée
       this.entrainement[0].semaines[semaineIndex].jours[joursIndex].etapes[etapeIndex].status = true
 
@@ -183,6 +197,31 @@ export const useEntrainementStore = defineStore({
 
     setEtapeIndex(index) {
       this.etapeIndex = index
+    },
+
+    // ----- RESET ----- //
+    resetTraining() {
+      this.setStatus(false)
+      this.setSemaine(1)
+      this.setJours(1)
+      this.setTime(null)
+      this.setEtapeIndex(0)
+      this.saveWeekAndDay()
+
+      setTimeout(() => {
+        window.location.reload()
+      }, 100)
+    },
+
+    resetDay() {
+      this.setStatus(false)
+      this.setTime(null)
+      this.setEtapeIndex(0)
+      this.saveWeekAndDay()
+
+      setTimeout(() => {
+        window.location.reload()
+      }, 100)
     }
   }
 })
