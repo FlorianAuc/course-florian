@@ -20,7 +20,7 @@
         </p>
         <p class="time">{{ entrainementStore.time }} secondes</p>
         <p class="action">{{ entrainementStore.getCurrentStep().label }}</p>
-        <audio  :src="`/${entrainementStore.getCurrentStep().label.toLowerCase()}.mp3`" ref="audioPlayer"></audio>
+        <audio autoplay :src="`/${entrainementStore.getCurrentStep().label.toLowerCase()}.mp3`" ref="audioPlayer"></audio>
 
         <progress
           class="progress is-large is-success"
