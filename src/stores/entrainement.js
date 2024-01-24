@@ -217,7 +217,6 @@ export const useEntrainementStore = defineStore({
       this.setStatus(false)
       this.setTime(null)
       this.setEtapeIndex(0)
-      this.saveWeekAndDay()
 
       setTimeout(() => {
         window.location.reload()
