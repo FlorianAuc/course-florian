@@ -47,28 +47,28 @@
             </td>
           </tr>
           <tr>
-            <td class="is-size-6">Trot</td>
-            <td class="is-size-6">Course normale</td>
+            <td class="etape">Trot</td>
+            <td class="etape">Course normale</td>
           </tr>
           <tr>
-            <td class="is-size-6">Trot lent</td>
-            <td class="is-size-6">Limite marche rapide</td>
+            <td class="etape">Trot lent</td>
+            <td class="etape">Limite marche rapide</td>
           </tr>
           <tr>
-            <td class="is-size-6">Déboulé</td>
-            <td class="is-size-6">Accélération constante sur 100 à 200 m.</td>
+            <td class="etape">Déboulé</td>
+            <td class="etape">Accélération constante sur 100 à 200 m.</td>
           </tr>
           <tr>
-            <td class="is-size-6">Course</td>
-            <td class="is-size-6">Trot à vitesses variables</td>
+            <td class="etape">Course</td>
+            <td class="etape">Trot à vitesses variables</td>
           </tr>
           <tr>
-            <td class="is-size-6">Sprint</td>
-            <td class="is-size-6">Vitese max</td>
+            <td class="etape">Sprint</td>
+            <td class="etape">Vitese max</td>
           </tr>
           <tr>
-            <td class="is-size-6">Etirements</td>
-            <td class="is-size-6">
+            <td class="etape">Etirements</td>
+            <td class="etape">
               Ensemble de
               <a
                 href="https://www.youtube.com/watch?v=rlDv7M_MxLw&ab_channel=LucileWoodward"
@@ -189,7 +189,7 @@ progress{
 
 .table {
   td {
-    font-size: 11px;
+    font-size: 1.25rem;
   }
 }
 .settings {
@@ -217,5 +217,14 @@ progress{
 .footer{
   margin-top: 5rem;
 }
+.legend{
+  font-size: 14px;
 }
+.table {
+  td {
+    font-size: 14px;
+  }
+}
+}
+
 </style>
